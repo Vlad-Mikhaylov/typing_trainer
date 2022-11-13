@@ -4,7 +4,7 @@ from collections import defaultdict
 import time
 from utils import log, match, calculateSpeed, readFromJson, sendToJson
 from gui import KeyboardTrainApp, KeyboardListener
-
+from random import randrange
 
 class KeyboardTrainer:
     """Main class of the logical part of the keyboard trainer"""
@@ -16,7 +16,8 @@ class KeyboardTrainer:
 
     def newInput1(self, instance):
         """Starts new phase of input with text from the textarea"""
-        with open("text1.txt") as text_1:
+        need_to_open_file = "Easy level texts/Text" + str(randrange(1, 5)) + ".txt"
+        with open(need_to_open_file) as text_1:
             self.text1 = text_1.read()
         log('new')
         insertedText = self.text1
@@ -31,7 +32,8 @@ class KeyboardTrainer:
 
     def newInput2(self, instance):
         """Starts new phase of input with text from the textarea"""
-        with open("text2.txt") as text_2:
+        need_to_open_file = "Hard level texts/Text" + str(randrange(1, 5)) + ".txt"
+        with open(need_to_open_file) as text_2:
             self.text2 = text_2.read()
         log('new')
         insertedText = self.text2

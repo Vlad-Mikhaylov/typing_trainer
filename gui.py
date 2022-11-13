@@ -101,10 +101,10 @@ class KeyboardTrainApp(App):
                                  orientation='horizontal')
         text2 = BoxLayout(spacing=3,
                                  orientation='horizontal')
-        text1.add_widget(Button(text='Text #1',
+        text1.add_widget(Button(text='Easy level Typing',
                                 font_size=30,
                                 on_press=self.kt.newInput1))
-        text2.add_widget(Button(text='Text #2',
+        text2.add_widget(Button(text='Hard level Typing',
                                 font_size=30,
                                 on_press=self.kt.newInput2))
         menu.add_widget(text1)
