@@ -1,0 +1,7 @@
+In 2005 Python released Django, a framework
+for building web applications. Django exploded
+in popularity and came to challenge the
+then-dominant Ruby on Rails framework.
+By 2011, Python was the most taught language
+in computer science programs across the
+country.

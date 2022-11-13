@@ -1,0 +1,6 @@
+Popular languages have a greater selection of libraries,
+which save a developer incredible amounts of time
+and effort. Popular languages also tend to have more
+tutorials and documentation, so you'll be more likely
+to find solutions to your problems.
+
