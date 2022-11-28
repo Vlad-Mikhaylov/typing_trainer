@@ -1,5 +1,0 @@
-Python is an easy to interpret and high-level
-object-oriented programming language with easy-to-read
-syntax. Ideal for prototyping and ad-hoc tasks, Python
-has wide use in scientific computing, web development,
-and automation.

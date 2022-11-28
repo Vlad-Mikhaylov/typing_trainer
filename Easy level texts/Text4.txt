@@ -1,5 +1,0 @@
-Python's developers strive to avoid premature
-optimization and reject patches to non-critical
-parts of the CPython reference implementation
-that would offer marginal increases in speed
-at the cost of clarity.
