@@ -1,0 +1,6 @@
+In 1989, Guido van Rossum was working at a
+computer science lab in the Netherlands. He
+decided to write a language that would improve
+on the faults of the most popular ones of 
+his time. Five and a half years later he
+released it.
