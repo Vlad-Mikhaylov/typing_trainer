@@ -1,10 +1,11 @@
 """Module with logical part of the keyboard trainer"""
 
 from collections import defaultdict
-import time
+import time, wikipedia, re
 from utils import log, match, calculateSpeed, readFromJson, sendToJson
 from gui import KeyboardTrainApp, KeyboardListener
 from random import randrange
+
 
 class KeyboardTrainer:
     """Main class of the logical part of the keyboard trainer"""
@@ -16,16 +17,52 @@ class KeyboardTrainer:
 
     def newInput1(self, instance):
         """Starts new phase of input with text from the textarea"""
-        need_to_open_file = "Easy level texts/Text" + str(randrange(1, 5)) + ".txt"
-        with open(need_to_open_file) as text_1:
-            self.text1 = text_1.read()
         log('new')
-        insertedText = self.text1
-        log('inserted text:', insertedText)
-
+        insertedText = self.app.TextInputWidget.text
+        ny = wikipedia.page(insertedText)
+        wikitext = ny.content[:300]
+        wikimas = wikitext.split('.')
+        wikimas = wikimas[:-1]
+        wikitext2 = ''
+        for x in wikimas:
+            if not ('==' in x):
+                if (len((x.strip())) > 3):
+                    wikitext2 = wikitext2 + x + '.'
+            else:
+                break
+        wikitext2 = re.sub('\([^()]*\)', '', wikitext2)
+        wikitext2 = re.sub('\([^()]*\)', '', wikitext2)
+        wikitext2 = re.sub('\{[^\{\}]*\}', '', wikitext2)
+        log('inserted text:', wikitext2)
+        insertedText = wikitext2
         if len(insertedText) == 0:
             return
 
+        # self.keyboardInput = KeyboardInput(insertedText,
+        #                                    self.app, self.endInput)
+        tmp = ""
+        texet = insertedText.split()
+        sum_len = 0
+        for word in texet:
+            sum_len += len(word)
+            if sum_len < 35:
+                tmp += word + " "
+            else:
+                tmp += '\n'
+                sum_len = 0
+                tmp += word + " "
+        insertedText = tmp
+        print(tmp)
+        '''
+        try:
+            with open("temporary texts/tmp_text.txt", 'r+') as f:
+                f.truncate()
+        except IOError:
+                pass
+        with open("temporary texts/tmp_text.txt", "w") as text_:
+
+            self.text2 = text_.read()
+        '''
         self.keyboardInput = KeyboardInput(insertedText,
                                            self.app, self.endInput)
         self.app.newPhrase(self.keyboardInput, insertedText)
@@ -87,6 +124,7 @@ class KeyboardTrainer:
         """Delete all saved statistics"""
         sendToJson({})
         self.endInput(0, 0, 10, {})
+
 
 class KeyboardInput:
     """Class of the one input phase. Getting input and return it to the app"""

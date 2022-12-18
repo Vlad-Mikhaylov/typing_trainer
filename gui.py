@@ -34,6 +34,7 @@ class KeyboardTrainApp(App):
                                markup=True,
                                color=(.0, .0, .0, 10),
                                font_size=40)
+        self.TextInputWidget = TextInput(hint_text=HINT_TEXT, font_size=30)
 
     def build(self):
         """Start function of the app.
@@ -73,6 +74,7 @@ class KeyboardTrainApp(App):
         log(Window.size)
         self.TextLabel.text = '[color=ff0000]' + text[:index] + \
                               '[/color]' + text[index:]
+        print(self.TextLabel.text)
         log((self.TextLabel.text,))
 
     def endMenu(self, speed, mistakes, averageSpeed):
@@ -97,16 +99,26 @@ class KeyboardTrainApp(App):
                          size_hint=(.5, .5),
                          pos_hint={'top': 0.6, 'right': 0.75})
         self.MainLayout.add_widget(menu)
+
+        self.TextInputWidget = TextInput(hint_text=HINT_TEXT, font_size=30)
+        menu.add_widget(self.TextInputWidget)
+        start = BoxLayout(spacing=3,
+                          orientation='horizontal')
+        start.add_widget(Button(text='Start',
+                                font_size=30,
+                                on_press=self.kt.newInput1))
         text1 = BoxLayout(spacing=3,
                                  orientation='horizontal')
         text2 = BoxLayout(spacing=3,
                                  orientation='horizontal')
+
         text1.add_widget(Button(text='Easy level Typing',
                                 font_size=30,
-                                on_press=self.kt.newInput1))
+                                on_press=self.kt.newInput2))
         text2.add_widget(Button(text='Hard level Typing',
                                 font_size=30,
                                 on_press=self.kt.newInput2))
+        menu.add_widget(start)
         menu.add_widget(text1)
         menu.add_widget(text2)
         menu.add_widget(Button(text='Reset statistics',
